@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jwin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+ext {
+    junitVersion = '5.6.1'
+    lombokVersion = '1.18.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    implementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
