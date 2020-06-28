@@ -29,12 +29,10 @@ public final class Hand {
     return ret;
   }
   
-  // dealTo will add one card to the hand
   public void dealTo(Card c) {
     cards.add(c);
   }
   
-  // dealTo can add multiple cards to the hand
   public void dealTo(ArrayList<Card> cardList) {
     if (cardList.size() > HANDSIZE)
       throw new IllegalArgumentException("Dealing a list of cards to a hand with too many cards!");
@@ -42,9 +40,6 @@ public final class Hand {
       cards.add(c);
   }
   
-  // removeFromHand() a card will find the card and removeFromHand it, and remove
-  // it from the list of
-  // cards
   // returns true if the card was in the hand and false otherwise
   public boolean removeFromHand(Card card) {
     for (Card c : cards) {

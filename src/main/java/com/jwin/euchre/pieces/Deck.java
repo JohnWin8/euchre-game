@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import com.jwin.euchre.io.IOController;
 import com.jwin.euchre.pieces.Card.CardVal;
 import com.jwin.euchre.pieces.Card.SUIT;
 import com.jwin.euchre.players.Player;
@@ -13,8 +14,9 @@ import com.jwin.euchre.players.User;
 public final class Deck {
   static final int deckSize = 24;
   private Card[] theDeck;
+  private IOController io;
   
-  public Deck() {
+  public Deck(IOController io) {
     theDeck = new Card[deckSize];
     int i = 0;
     
@@ -28,7 +30,7 @@ public final class Deck {
   
   public void printDeck() {
     for (int i = 0; i < theDeck.length; i++) {
-      System.out.println(theDeck[i].toString());
+      io.outputString(theDeck[i].toString());
     }
   }
   
@@ -47,8 +49,8 @@ public final class Deck {
   public static void main(String[] args) {
     SUIT getMySuit = SUIT.SPADES;
     System.out.println(getMySuit);
-    Player p = new User("Cool dude", new Scanner(System.in));
-    Deck deck = new Deck();
-    deck.printDeck();
+//    Player p = new User("Cool dude", new Scanner(System.in));
+//    Deck deck = new Deck();
+//    deck.printDeck();
   }
 }

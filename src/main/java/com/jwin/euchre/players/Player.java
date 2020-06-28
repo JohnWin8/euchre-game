@@ -1,10 +1,10 @@
 package com.jwin.euchre.players;
 
-import com.jwin.euchre.pieces.Card;
-import com.jwin.euchre.pieces.Hand;
-import com.jwin.euchre.pieces.Card.SUIT;
-
 import java.util.ArrayList;
+
+import com.jwin.euchre.pieces.Card;
+import com.jwin.euchre.pieces.Card.SUIT;
+import com.jwin.euchre.pieces.Hand;
 
 public abstract class Player {
   
@@ -17,7 +17,6 @@ public abstract class Player {
   }
   
   public void getDealt(Card card) {
-    // give the card to hand
     hand.dealTo(card);
   }
   

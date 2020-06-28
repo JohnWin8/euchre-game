@@ -4,17 +4,17 @@ import static com.jwin.euchre.pieces.Card.CardVal;
 import static com.jwin.euchre.pieces.Card.SUIT;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import com.jwin.euchre.exceptions.NoSuchEnumException;
+import com.jwin.euchre.io.IOController;
 import com.jwin.euchre.pieces.Card;
 
 public class User extends Player {
-  Scanner scanner;
+  IOController io;
   
-  public User(String name, Scanner scanner) {
+  public User(String name, IOController io) {
     super(name);
-    this.scanner = scanner;
+    this.io = io;
   }
   
   @Override
@@ -29,19 +29,17 @@ public class User extends Player {
       
     ArrayList<Card> cards = hand.allCards();
     for (Card c : cards) {
-      System.out.println(c);
+      io.outputString(c.toString());
     }
     
     Card cardToPlay;
     
     // read in 2 strings, first the getMySuit, then the value
     while (true) {
-      System.out.print("Pick a card to removeFromHand: ");
-
-      if (!scanner.hasNext())
-        throw new RuntimeException("Scanner ended while game was still playing");
-      String suit = scanner.next().toUpperCase();
-      String val = scanner.next().toUpperCase();
+      io.outputString("Pick a card to play: ");
+      
+      String suit = io.inputString();
+      String val = io.inputString();
       
       SUIT theSuit;
       CardVal theVal;
@@ -49,14 +47,14 @@ public class User extends Player {
       try {
         theSuit = SUIT.wordToSuit(suit);
       } catch (NoSuchEnumException e) {
-        System.out.println(e.getMessage());
+        io.outputError(e);
         continue;
       }
       
       try {
         theVal = CardVal.wordToCardVal(val);
       } catch (NoSuchEnumException e) {
-        System.out.println(e.getMessage());
+        io.outputError(e);
         continue;
       }
       
@@ -65,9 +63,9 @@ public class User extends Player {
       if (hand.isLegalToPlay(cardToPlay, currentSuit))
         break;
       
-      System.out
-          .println("The card you tried to play " + cardToPlay.toString() + " is not in your hand or not legal to play");
-      System.out.println("Please play a legal card from your hand");
+      io.outputString(
+          "The card you tried to play " + cardToPlay.toString() + " is not in your hand or not legal to play");
+      io.outputString("Please play a legal card from your hand");
     }
     
     return cardToPlay;
