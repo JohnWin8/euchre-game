@@ -19,7 +19,7 @@ public final class Card {
           return s;
       }
       throw new NoSuchEnumException(
-          "You tried to make a suit " + word + " your options are: " + SUIT.appendAllSuitNames());
+          "You tried to make a suit " + word + ", your options are: " + SUIT.appendAllSuitNames());
     }
     
     protected static String appendAllSuitNames() {

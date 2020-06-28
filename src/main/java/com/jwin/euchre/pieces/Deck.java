@@ -1,21 +1,20 @@
 package com.jwin.euchre.pieces;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 import com.jwin.euchre.pieces.Card.CardVal;
 import com.jwin.euchre.pieces.Card.SUIT;
 import com.jwin.euchre.players.Player;
 import com.jwin.euchre.players.User;
 
-import java.util.Scanner;
-
 public final class Deck {
-  private static final int NUM_PLAYERS = 4;
-
   static final int deckSize = 24;
   private Card[] theDeck;
-  private Player[] players;
   
-  public Deck(Player p1, Player p2, Player p3, Player p4) {
-    players = new Player[] { p1, p2, p3, p4 };
+  public Deck() {
     theDeck = new Card[deckSize];
     int i = 0;
     
@@ -33,15 +32,23 @@ public final class Deck {
     }
   }
   
-  public void deal() {
-    // add cards to each of the 4 players, probs by randomly splitting the deck
+  public List<Card> deal() {
+    List<Card> ret = new ArrayList<>();
+    List<Integer> numbers = new ArrayList<>();
+    for (int i = 0; i < deckSize; i++)
+      numbers.add(i);
+    Collections.shuffle(numbers);
+    for (int i = 0; i < deckSize; i++) {
+      ret.add(theDeck[numbers.get(i)]);
+    }
+    return ret;
   }
   
   public static void main(String[] args) {
     SUIT getMySuit = SUIT.SPADES;
     System.out.println(getMySuit);
     Player p = new User("Cool dude", new Scanner(System.in));
-    Deck deck = new Deck(p, p, p, p);
+    Deck deck = new Deck();
     deck.printDeck();
   }
 }
