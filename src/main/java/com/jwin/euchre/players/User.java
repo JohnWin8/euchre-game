@@ -4,7 +4,9 @@ import static com.jwin.euchre.pieces.Card.CardVal;
 import static com.jwin.euchre.pieces.Card.SUIT;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+import com.jwin.euchre.exceptions.NoMoreInputException;
 import com.jwin.euchre.exceptions.NoSuchEnumException;
 import com.jwin.euchre.io.IOController;
 import com.jwin.euchre.pieces.Card;
@@ -18,12 +20,17 @@ public class User extends Player {
   }
   
   @Override
-  public Card play(SUIT currentSuit) {
-    Card toPLay = pickCard(currentSuit);
+  public Card play(Optional<SUIT> currentSuit, SUIT currentTrump) {
+    Card toPLay;
+    try {
+      toPLay = pickCard(currentSuit);
+    } catch (NoMoreInputException nmie) {
+      throw new RuntimeException(nmie.toString() + " when asking User to play");
+    }
     return toPLay;
   }
   
-  private Card pickCard(SUIT currentSuit) {
+  private Card pickCard(Optional<SUIT> currentSuit) throws NoMoreInputException {
     if (this.hand.allCards().isEmpty())
       throw new Error("No cards left in the hand of " + this.name); // TODO : Fix exception
       

@@ -5,6 +5,7 @@ import static com.jwin.euchre.pieces.Card.SUIT;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import lombok.NoArgsConstructor;
 
@@ -51,10 +52,12 @@ public final class Hand {
     return false;
   }
   
-  public boolean isLegalToPlay(Card card, SUIT currentSuit) {
+  public boolean isLegalToPlay(Card card, Optional<SUIT> currentSuit) {
     if (!cards.contains(card))
       return false;
-    if (!card.getMySuit().equals(currentSuit) && getAllCardsOfASuit(currentSuit).size() > 0)
+    if (!currentSuit.isPresent())
+      return true;
+    if (!card.getMySuit().equals(currentSuit.get()) && getAllCardsOfASuit(currentSuit.get()).size() > 0)
       return false;
     
     return true;

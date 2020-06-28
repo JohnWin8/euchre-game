@@ -9,10 +9,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
-public final class Card {
+public final class Card implements Comparable<Card>{
   public enum SUIT {
-    SPADES, HEARTS, CLUBS, DIAMONDS;
-    
+    DIAMONDS, CLUBS, HEARTS, SPADES;
+
     public static SUIT wordToSuit(String word) throws NoSuchEnumException {
       for (SUIT s : SUIT.values()) {
         if (word.toUpperCase().equals(s.name()))
@@ -58,5 +58,13 @@ public final class Card {
   @Override
   public String toString() {
     return mySuit.toString() + " " + myVal.toString();
+  }
+
+  @Override
+  public int compareTo(Card other){
+      int valCheck = getMyVal().compareTo(other.getMyVal());
+      if (valCheck == 0)
+        return getMySuit().compareTo(other.getMySuit());
+      return valCheck;
   }
 }

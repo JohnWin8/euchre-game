@@ -1,6 +1,7 @@
 package com.jwin.euchre.players;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import com.jwin.euchre.pieces.Card;
 import com.jwin.euchre.pieces.Card.SUIT;
@@ -24,6 +25,6 @@ public abstract class Player {
     hand.dealTo(clist);
   }
   
-  public abstract Card play(SUIT currentSuit);
+  public abstract Card play(Optional<SUIT> currentSuit, SUIT currentTrump);
   
 }
