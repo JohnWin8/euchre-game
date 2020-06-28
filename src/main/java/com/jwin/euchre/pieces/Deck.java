@@ -3,13 +3,10 @@ package com.jwin.euchre.pieces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import com.jwin.euchre.io.IOController;
 import com.jwin.euchre.pieces.Card.CardVal;
 import com.jwin.euchre.pieces.Card.SUIT;
-import com.jwin.euchre.players.Player;
-import com.jwin.euchre.players.User;
 
 public final class Deck {
   static final int deckSize = 24;

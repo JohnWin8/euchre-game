@@ -38,8 +38,8 @@ public class User extends Player {
     while (true) {
       io.outputString("Pick a card to play: ");
       
-      String suit = io.inputString();
-      String val = io.inputString();
+      String suit = io.inputStringWord();
+      String val = io.inputStringWord();
       
       SUIT theSuit;
       CardVal theVal;
